@@ -1,22 +1,22 @@
 import React from 'react';
-import { View, Text, TouchOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import { responsiveFontSize, responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 
 const CreateRoom = () => {
     return (
         <View style={styles.container}>
-            <TouchOpacity style={styles.imageContainer}>
+            <TouchableOpacity style={styles.imageContainer}>
                 <View style={styles.image}>
                     <MaterialIcons name="video-call" size={responsiveFontSize(3)} color="black"/>
                 </View>
-            </TouchOpacity>
+            </TouchableOpacity>
             <Text style={styles.name}>Create Room</Text>
         </View>
     )
 }
 
-export default CreateRoom;
+export default CreateRoom
 
 const styles = StyleSheet.create({
     container : {

@@ -4,10 +4,13 @@ import Home from '../screens/Home';
 import Users from '../screens/Users';
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { responsiveFontSize, responsiveHeight } from 'react-native-responsive-dimensions';
+import { useAppContext } from '../context/Context';
+import { CHANGE_HEADER } from '../context/reducer';
 
 const HomeTabs = () => {
 
     const Tab = createBottomTabNavigator()
+    const [{}, dispatch ] = useAppContext()
 
     return (
         <Tab.Navigator
@@ -20,24 +23,60 @@ const HomeTabs = () => {
                     }
                 }
             })}
-            tabBarOptions={
+            screenOption ={
                 {
-                    activeTintColor : 'rgba(211,211,211,0.7)',
-                    activeTintColor : 'black',
-                    style : {
+                    tabBarActiveTintColor: 'rgba(211,211,211,0.7)',
+                    tabBarActiveTintColor : 'black',
+                    tabBarStyle : {
                         height : responsiveHeight(8)
+                    },
+                    tabBarStyle : {
+                        padding : 5
+                    },
+                    tabBarlabelStyle : {
+                        fontSize : responsiveFontSize(1.5)
                     }
                 }
             }
         >
             <Tab.Screen
                 name="Main"
-                options={{ title : 'Chats' }}
+                options={
+                    { title : 'Chats' }
+                }
                 component={Home}
+                listeners={() => {
+                    {
+                        tabPress : e => {
+                        console.log("pressed")
+                        dispatch({
+                            type : CHANGE_HEADER,
+                            payload : {
+                                status : false,
+                                title : 'Chat'
+                            }
+                        })
+                    }
+                }
+                }}
             />
             <Tab.Screen
                 name="Users"
                 component={Users}
+                listeners={() => {
+                    {
+                        tabPress : () => {
+                            console.log("pressed on users")
+                            dispatch({
+                                type : CHANGE_HEADER,
+                                payload : {
+                                    status : true,
+                                    title : 'Users'
+                            }
+                        })
+                    }
+                }
+                }}
             />
         </Tab.Navigator>
     ) 
