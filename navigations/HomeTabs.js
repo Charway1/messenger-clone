@@ -6,6 +6,7 @@ import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { responsiveFontSize, responsiveHeight } from 'react-native-responsive-dimensions';
 import { useAppContext } from '../context/Context';
 import { CHANGE_HEADER } from '../context/reducer';
+import PeopleTabs from './PeopleTabs';
 
 const HomeTabs = () => {
 
@@ -45,28 +46,26 @@ const HomeTabs = () => {
                     { title : 'Chats' }
                 }
                 component={Home}
-                listeners={() => {
+                listeners={() => (
                     {
                         tabPress : e => {
-                        console.log("pressed")
                         dispatch({
                             type : CHANGE_HEADER,
                             payload : {
                                 status : false,
                                 title : 'Chat'
-                            }
+                        }
                         })
-                    }
+    }
                 }
-                }}
+    )}
             />
             <Tab.Screen
                 name="Users"
-                component={Users}
-                listeners={() => {
+                component={PeopleTabs}
+                listeners={() => (
                     {
                         tabPress : () => {
-                            console.log("pressed on users")
                             dispatch({
                                 type : CHANGE_HEADER,
                                 payload : {
@@ -76,7 +75,7 @@ const HomeTabs = () => {
                         })
                     }
                 }
-                }}
+                )}
             />
         </Tab.Navigator>
     ) 

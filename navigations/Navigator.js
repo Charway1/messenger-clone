@@ -8,6 +8,8 @@ import HeaderButtons from '../components/HeaderButtons';
 import ChatView from '../screens/ChatView';
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { useAppContext } from '../context/Context'
+import AddContacts from '../screens/AddContacts';
+import AllPeople from '../screens/AllPeople';
 
 const Navigator = () => {
     const Stack = createStackNavigator()
@@ -22,7 +24,7 @@ const Navigator = () => {
                         ({navigation}) => ({
                             title : headerTitle,
                             headerRight : () => {
-                                return !header ? <HeaderButtons/> : <HeaderButtons changeToUsers={header}/> 
+                                return !header ? <HeaderButtons navigation={navigation}/> : <HeaderButtons navigation={navigation} changeToUsers={header}/> 
                             },
                             headerLeft : () => {
                                 return <Image style={styles.Image} source={
@@ -89,6 +91,14 @@ const Navigator = () => {
                         })
                     }
                 />
+                <Stack.Screen
+                    name="AddContacts"
+                    component={AddContacts}
+                />
+                <Stack.Screen
+                    name="AllPeople"
+                    component={AllPeople}
+                /> 
             </Stack.Navigator>
         </NavigationContainer>
 

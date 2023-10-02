@@ -2,19 +2,19 @@ import React from 'react';
 import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
-const ActiveUsersOnHOme = () => {
+const ActiveUsersOnHOme = ({name, picture}) => {
     return (
         <TouchableOpacity activeOpacity={0.7} style={styles.container}>
             <View style={styles.imageContainer}>
                 <Image 
                     style={styles.image}
                     source={{
-                        uri : 'https://cdn.pixabay.com/photo/2018/04/04/18/45/ball-3290624_640.jpg'
+                        uri : picture
                     }}
                 />
                 <View style={styles.onlineStatus}/>
             </View>
-            <Text style={styles.name}>Name</Text>
+            <Text style={styles.name}>{name}</Text>
         </TouchableOpacity>
     )
 }
